@@ -50,7 +50,7 @@ public class MemberHealthEvaluatorJUnitTest extends HealthEvaluatorTestCase {
   @Test
   public void testCheckVMProcessSize() throws InterruptedException {
     if (PureJavaMode.osStatsAreAvailable()) {
-      GemFireStatSampler sampler = system.getStatSampler();
+      GemFireStatSampler sampler = system.getInternalDistributedSystemStats().getStatSampler();
       assertNotNull(sampler);
 
       sampler.waitForInitialization(10000); // fix: remove infinite wait

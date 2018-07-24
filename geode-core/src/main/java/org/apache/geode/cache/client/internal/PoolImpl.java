@@ -238,7 +238,7 @@ public class PoolImpl implements InternalPool {
     }
     StatisticsFactory statFactory = null;
     if (this.gatewaySender != null) {
-      statFactory = new DummyStatisticsFactory();
+      statFactory = new DummyStatisticsFactory(this.internalDistributedSystem.getStatisticsFactory());
     } else {
       statFactory = this.internalDistributedSystem.getInternalDistributedSystemStats();
     }

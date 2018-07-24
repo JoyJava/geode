@@ -150,7 +150,7 @@ public class StatisticsDistributedTest extends JUnit4CacheTestCase {
         InternalDistributedSystem system = getSystem(props);
 
         // assert that sampler is working as expected
-        GemFireStatSampler sampler = system.getStatSampler();
+        GemFireStatSampler sampler = system.getInternalDistributedSystemStats().getStatSampler();
         assertTrue(sampler.isSamplingEnabled());
         assertTrue(sampler.isAlive());
         assertEquals(new File(pubArchives[pubVM]), sampler.getArchiveFileName());
@@ -196,7 +196,7 @@ public class StatisticsDistributedTest extends JUnit4CacheTestCase {
       subStatsRef.set(statistics);
 
       // assert that sampler is working as expected
-      GemFireStatSampler sampler = system.getStatSampler();
+      GemFireStatSampler sampler = system.getInternalDistributedSystemStats().getStatSampler();
       assertTrue(sampler.isSamplingEnabled());
       assertTrue(sampler.isAlive());
       assertEquals(new File(subArchive), sampler.getArchiveFileName());
