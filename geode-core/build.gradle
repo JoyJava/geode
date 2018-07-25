@@ -18,15 +18,32 @@
 
 apply plugin: 'antlr'
 apply plugin: 'me.champeau.gradle.jmh'
+apply plugin: 'kotlin'
 
 sourceSets {
   jca {
     compileClasspath += configurations.compile
     runtimeClasspath += configurations.runtime
   }
+  main.kotlin.srcDirs += 'src/main/kotlin'
 }
 
+sourceCompatibility = 1.8
+targetCompatibility = sourceCompatibility
+compileKotlin { kotlinOptions.jvmTarget = sourceCompatibility }
+compileTestKotlin { kotlinOptions.jvmTarget = sourceCompatibility }
 
+buildscript {
+  ext.kotlin_version = '1.2.51'
+
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+  }
+}
 
 configurations {
   //declaring new configuration that will be used to associate with artifacts
@@ -38,7 +55,11 @@ dependencies {
   antlr 'antlr:antlr:' + project.'antlr.version'
 
   // External
-  compileOnly project(':geode-micrometer-stats')
+  compile project(':geode-micrometer-stats')
+  compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+  compile 'io.micrometer:micrometer-registry-influx:latest.release'
+  compile 'io.micrometer:micrometer-registry-jmx:latest.release'
+
 
   compileOnly files("${System.getProperty('java.home')}/../lib/tools.jar")
   testCompile files("${System.getProperty('java.home')}/../lib/tools.jar")

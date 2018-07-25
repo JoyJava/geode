@@ -106,7 +106,6 @@ public class StatTypesAreRolledOverRegressionTest {
 
   @After
   public void tearDown() throws Exception {
-    StatisticsTypeFactoryImpl.clear();
   }
 
   @Test

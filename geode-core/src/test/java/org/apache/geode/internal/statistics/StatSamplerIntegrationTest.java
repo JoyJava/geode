@@ -78,7 +78,6 @@ public class StatSamplerIntegrationTest {
   public void tearDown() {
     this.statisticTypes = null;
     this.allStatistics = null;
-    StatisticsTypeFactoryImpl.clear();
     StatArchiveWriter.clearTraceFilter();
   }
 

@@ -66,7 +66,6 @@ public class StatArchiveWithMissingResourceTypeRegressionTest {
 
   @After
   public void tearDown() throws Exception {
-    StatisticsTypeFactoryImpl.clear();
   }
 
   @Test
